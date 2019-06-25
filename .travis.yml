@@ -85,6 +85,20 @@ matrix:
         - CC: gcc-6
         - CXX: g++-6
 
+    # Earliest available on Travis
+    - name: AppleClang-6.1.0
+      os: osx
+      osx_image: xcode6.4
+      language: cpp
+      env:
+        - SQLITE_ORM_OMITS_CODECVT: ON
+      addons:
+        homebrew:
+          packages:
+            - catch2
+            - ninja
+          update: true
+
     # Earliest available with complete C++14 support
     # v3.6-3.9 require libc++ to build this project
     - name: LLVM/Clang-3.6 libc++
