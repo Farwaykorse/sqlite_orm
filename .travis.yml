@@ -94,6 +94,9 @@ matrix:
           packages:
             - ninja-build
 
+  allow_failures:
+    - name: GCC-5
+
 before_install:
   - |
     if [[ ${TRAVIS_OS_NAME} == "osx" ]]; then
