@@ -16,7 +16,8 @@ matrix:
         - CC: gcc-9
         - CXX: g++-9
 
-    - name: "GCC-7"
+    # Minimum required CMake version.
+    - name: GCC-7 (CMake v3.2.3)
       addons:
         apt:
           sources:
@@ -27,6 +28,7 @@ matrix:
       env:
         - CC: gcc-7
         - CXX: g++-7
+        - CMake_version: 3.2.3
 
     - name: "LLVM/Clang (Travis default)"
       language: cpp
@@ -143,6 +145,19 @@ install:
       cmake -Bbuild -H. -DBUILD_TESTING=OFF
       sudo env "PATH=$PATH" cmake --build ./build --target install
     fi
+  - |
+    # Install CMake
+    ( set -euo pipefail
+      if [[ ${CMake_version:-} && ${TRAVIS_OS_NAME} == "linux" ]]; then
+        INSTALLER="install-cmake.sh"
+        URL="https://github.com/Kitware/CMake/releases/download/v${CMake_version}/cmake-${CMake_version}-Linux-x86_64.sh"
+        curl -sSL ${URL} -o ${INSTALLER}
+        chmod +x ${INSTALLER}
+        sudo ./${INSTALLER} --prefix=/usr/local --skip-license
+        rm ${INSTALLER}
+      fi
+    )
+    cmake --version
 
 # scripts to run before build
 before_script:
