@@ -118,6 +118,11 @@ before_script:
   - if [[ "$CXX" == *"clang"* ]]; then clang --version ; fi
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir compile && cd compile
+  - |
+    # Choose standard library
+    if [[ ${CXX} == clang* && ${CXX_lib:-} ]]; then
+      export CXXFLAGS="${CXXFLAGS} -stdlib=${CXX_lib}"
+    fi
   - cmake -G Ninja -DCMAKE_BUILD_TYPE=Debug -DSQLITE_ORM_OMITS_CODECVT="${SQLITE_ORM_OMITS_CODECVT:OFF}" ..
 
 # build examples, and run tests (ie make & make test)
