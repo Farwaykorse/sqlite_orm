@@ -85,6 +85,15 @@ matrix:
         - CC: gcc-6
         - CXX: g++-6
 
+    # Earliest available with complete C++14 support
+    - name: GCC-5 # Default on Xenial
+      language: cpp
+      image: xenial
+      addons:
+        apt:
+          packages:
+            - ninja-build
+
 before_install:
   - |
     if [[ ${TRAVIS_OS_NAME} == "osx" ]]; then
