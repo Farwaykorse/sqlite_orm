@@ -86,6 +86,23 @@ matrix:
         - CXX: g++-6
 
     # Earliest available with complete C++14 support
+    # v3.6-3.9 require libc++ to build this project
+    - name: LLVM/Clang-3.6 libc++
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.6
+          packages:
+            - clang-3.6
+            - libc++-dev
+            - ninja-build
+      env:
+        - CC: clang-3.6
+        - CXX: clang++-3.6
+        - CXX_lib: libc++
+
+    # Earliest available with complete C++14 support
     - name: GCC-5 # Default on Xenial
       language: cpp
       image: xenial
