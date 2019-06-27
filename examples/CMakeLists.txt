@@ -1,5 +1,3 @@
-cmake_minimum_required (VERSION 3.2)
-
 file(GLOB files "*.cpp")
 foreach(file ${files})
     get_filename_component(file_basename ${file} NAME_WE)

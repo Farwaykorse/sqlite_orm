@@ -1,5 +1,3 @@
-cmake_minimum_required (VERSION 3.2)
-
 option(SQLITE_ORM_OMITS_CODECVT "Omits codec testing" OFF)
 
 option(SqliteOrm_SysSqlite "Use system version of sqlite library" OFF)

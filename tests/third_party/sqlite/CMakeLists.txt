@@ -1,5 +1,3 @@
-cmake_minimum_required (VERSION 3.2)
-
 set(SQLITE3_ARCH_NAME "${CMAKE_CURRENT_BINARY_DIR}/sqlite.zip")
 set(SQLITE3_LINK "https://www.sqlite.org/2017/sqlite-amalgamation-3210000.zip")
 set(SQLITE3_ARCH_SHA1 "ebe33c20d37a715db95288010c1009cd560f2452")
