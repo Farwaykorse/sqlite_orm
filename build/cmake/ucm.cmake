@@ -18,8 +18,9 @@ include(CMakeParseArguments)
 if(NOT COMMAND cotire)
     include(${CMAKE_CURRENT_LIST_DIR}/../cotire/CMake/cotire.cmake OPTIONAL)
 endif()
-
-if(COMMAND cotire AND "1.7.9" VERSION_LESS "${COTIRE_CMAKE_MODULE_VERSION}")
+if(NOT DEFINED COTIRE_CMAKE_MODULE_VERSION)
+    set(ucm_with_cotire 0)
+elseif(COMMAND cotire AND "1.7.9" VERSION_LESS "${COTIRE_CMAKE_MODULE_VERSION}")
     set(ucm_with_cotire 1)
 else()
     set(ucm_with_cotire 0)
@@ -161,7 +162,10 @@ macro(ucm_gather_flags with_linker result)
         list(APPEND ${result} CMAKE_SHARED_LINKER_FLAGS)
         list(APPEND ${result} CMAKE_STATIC_LINKER_FLAGS)
     endif()
-    
+
+    if(NOT DEFINED CMAKE_CONFIGURATION_TYPES)
+        set(CMAKE_CONFIGURATION_TYPES "")
+    endif()
     if("${CMAKE_CONFIGURATION_TYPES}" STREQUAL "" AND NOT "${CMAKE_BUILD_TYPE}" STREQUAL "")
         # handle single config generators - like makefiles/ninja - when CMAKE_BUILD_TYPE is set
         string(TOUPPER ${CMAKE_BUILD_TYPE} config)
