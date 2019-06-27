@@ -34,7 +34,7 @@ init:
 before_build:
   - mkdir compile
   - cd compile
-  - cmake -DSqliteOrm_BuildTests=ON .. -G %generator%
+  - cmake -DSqliteOrm_BuildTests=ON .. -G %generator% -Wdev --warn-uninitialized
 
 # build examples, and run tests (ie make & make test)
 build_script:

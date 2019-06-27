@@ -97,7 +97,7 @@ install:
     if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then
       git clone --depth=1 --quiet https://github.com/catchorg/Catch2.git
       cd Catch2
-      cmake -Bbuild -H. -DBUILD_TESTING=OFF
+      cmake -Bbuild -H. -DBUILD_TESTING=OFF -Wdev --warn-uninitialized
       sudo env "PATH=$PATH" cmake --build ./build --target install
     fi
 
