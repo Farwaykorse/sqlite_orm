@@ -14,7 +14,7 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 
 message(STATUS "Configuring ${CMAKE_PROJECT_NAME} ${sqlite_orm_VERSION}")
 
-set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_CURRENT_SOURCE_DIR}/build/cmake")
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/build/cmake")
 
 # Build time options are defined here
 include(DefineInstallationPaths)
